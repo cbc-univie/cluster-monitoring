@@ -10,8 +10,8 @@ Dashboard of the clusters
 tempmon can be easily installed:
 ```
 git clone https://github.com/cbc-univie/cluster-monitoring.git
-conda env create -f devtools/conda_envs/dash.yml
 cd cluster-monitoring
+conda env create -f devtools/conda_envs/dash.yml
 pip install .
 ```
 
