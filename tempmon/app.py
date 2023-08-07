@@ -16,7 +16,7 @@ import dash
 # local imports
 #from utils.settings import APP_HOST, APP_PORT, APP_DEBUG, DEV_TOOLS_PROPS_CHECK
 #from components.login import User, login_location
-from components import simple_plot  #footer, navbar,
+#from components import footer, navbar,
 from dash import Input, Output, dcc, html
 
 #server = Flask(__name__)
@@ -55,9 +55,8 @@ app = dash.Dash(
 
 import plotly.express as px
 import plotly.graph_objs as go
-from utils.preprocess_data import generate_dfs, get_test_data
+from utils.preprocess_data import generate_dfs
 
-data = get_test_data()
 rs02, rs10 = generate_dfs()
 
 @app.callback(

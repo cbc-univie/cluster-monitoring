@@ -1,26 +1,11 @@
 # This file preporcess the data
 import copy
-import os
 import re
-import subprocess
-from dataclasses import dataclass
 from datetime import datetime
 
 import numpy as np
 import pandas as pd
 
-
-@dataclass  
-class RS02:
-    name = "rs02"
-    file = "/home/szabadi/owfs/temp.log"
-    skiplines = 1114 # not needed anymore
-
-@dataclass  
-class RS10:
-    name = "rs10"
-    file = "/scratch/szabadi/owfs/temp.log"
-    skiplines = 377 # not needed anymore
 
 class BaseLineReader:
     def __init__(self):
@@ -108,57 +93,26 @@ class BufferReader:
 
     def read_line(self, line):
         for reader in self.line_readers:
-            # try:
-            #    return reader.read_line(line)
-            # except:
-            #    continue
-            # takes loner:
             if reader.detect_format(line):
                 return reader.read_line(line)
         print("Format not recognized")
         print(line)
         raise RuntimeError()
 
-class TemperatureDF():
-    def __init__(self, cluster=None, from_file=None):
-        self.cluster = cluster
-        if from_file:
-            with open(from_file, "r") as f:
-                buffer = f.readlines()
-        else:
-            buffer = self._bad_hack()
-        reader = BufferReader(buffer)
-        self.df = reader.df
-    
-    def _bad_hack(self):
-        ssh_config_file = os.path.expanduser('~/.ssh/config')
-        #shutil.copyfile(ssh_config_file, ssh_config_file + ".backup")
-        original_config = open(ssh_config_file, "r").read()
 
-        with open(ssh_config_file, "w") as f:
-            f.write(f"Host {self.cluster.name}")
+def generate_rs02_df():
+    file = "data/temp_rs02.log"
+    with open(file, "r") as f:
+        buffer = f.readlines()
+    reader = BufferReader(buffer)
+    return reader.df
 
-        process = subprocess.Popen(["ssh", self.cluster.name, "cat", self.cluster.file], text=True, stdout=subprocess.PIPE, shell=False, )
-        try:
-            outs, errs = process.communicate(timeout=15)
-        except subprocess.TimeoutExpired:
-            process.kill()
-            outs, errs = process.communicate()
-            print("Error")
+def generate_rs10_df():
+    file = "data/temp_rs10.log"
+    with open(file, "r") as f:
+        buffer = f.readlines()
+    reader = BufferReader(buffer)
+    return reader.df
 
-        with open(ssh_config_file, "w") as f:
-            f.write(original_config)
-
-        return [i for i in outs.split("\n") if i]
-    
-def generate_dfs(rs02_file=None, rs10_file=None):
-    rs02 = RS02()
-    rs10 = RS10()
-    df_rs02 = TemperatureDF(rs02, rs02_file)
-    df_rs10 = TemperatureDF(rs10, rs10_file)
-    return df_rs02.df, df_rs10.df
-
-def get_test_data():
-    rs02 = RS02()
-    df_rs02 = TemperatureDF(cluster=rs02, from_file="data/temp_rs02.log") # we start at src as it seems
-    return df_rs02.df
+def generate_dfs():
+    return generate_rs02_df(), generate_rs10_df()
