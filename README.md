@@ -7,25 +7,22 @@ Dashboard of the clusters
 
 ## Installation
 
-protex can be easily installed from conda-forge:
+tempmon can be easily installed:
 ```
-conda install protex -c conda-forge
-```
-Alternatively clone this repo and install from source:
-```
-git clone https://github.com/florianjoerg/protex.git
-cd protex
+git clone https://github.com/cbc-univie/cluster-monitoring.git
+conda env create -f devtools/conda_envs/dash.yml
+cd cluster-monitoring
 pip install .
 ```
 
 ## Usage
-Please see the [documentation](https://florianjoerg.github.io/protex) for usage examples.
+TODO
+
+[//]: <Please see the [documentation](https://cbc.github.io/cluster-monitoring) for usage examples.>
 
 ## Maintainers
 
-- Florian Jörg <florian.joerg@univie.ac.at> (University of Vienna)
-- Andràs Szabadi
-- Johannes Karwounopoulos
+- cbc
   
 ### Copyright
 
