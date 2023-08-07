@@ -4,6 +4,8 @@ import plotly.express as px
 from dash import Input, Output, callback, dcc, html
 from utils.preprocess_data import generate_dfs
 
+#get the data
+#TODO: maybe check with timestamp if we can skip the conversion from log to csv and just load the df
 rs02, rs10 = generate_dfs()
 
 @callback(
@@ -24,6 +26,8 @@ def update_charts(start_date, end_date):
     #     fig.add_trace(trace)
     #return {'data': selected_traces}
     simple_figure = px.line(x=filtered_data["date"], y=filtered_data["server room temp"], labels={"server room temp": "server room"}, title="rs02")
+    simple_figure.update_traces(name="server room temp", showlegend=True) # needs to come directly after!
+
     simple_figure.add_scatter(x=filtered_data["date"], y=filtered_data["outdoor temp"], mode='lines', name='outdoor temp', yaxis="y1")
     simple_figure.add_scatter(x=filtered_data["date"], y=filtered_data["total jobs"], mode='lines', name='total jobs', yaxis="y2")
     simple_figure.update_layout(xaxis_title="Date", yaxis=dict(title='Temperature °C'), yaxis2=dict(title="Jobs", overlaying="y", side="right")),
@@ -49,8 +53,13 @@ def update_rs10(start_date, end_date):
     #     fig.add_trace(trace)
     #return {'data': selected_traces}
     simple_figure = px.line(x=filtered_data["date"], y=filtered_data["server room temp"], title="rs10 (🌹)")
+    simple_figure.update_traces(name="server room temp", showlegend=True) # needs to come directly after!
+
     simple_figure.add_scatter(x=filtered_data["date"], y=filtered_data["outdoor temp"], mode='lines', name='outdoor temp')
     simple_figure.add_scatter(x=filtered_data["date"], y=filtered_data["total jobs"], mode='lines', name='total jobs', yaxis="y2")
+
+    
+
     simple_figure.update_layout(xaxis_title="Date", yaxis=dict(title='Temperature °C'), yaxis2=dict(title="Jobs", overlaying="y", side="right")),
     #simple_figure.update_layout(xaxis_title="Date", yaxis_title="Temperature (°C)")
    
@@ -65,10 +74,10 @@ first_plots = (html.Div(
                             ),
                             dcc.DatePickerRange(
                                 id="date-range",
-                                min_date_allowed=datetime.date(2023, 7, 24),#.date(),
-                                max_date_allowed=rs02["date"].max(),#.date(),
-                                start_date=datetime.date(2023, 7, 24),#.date(),
-                                end_date=rs02["date"].max(),#.date(),
+                                min_date_allowed=datetime.date(2023, 7, 24),
+                                max_date_allowed=rs02["date"].max(),
+                                start_date=datetime.date(2023, 7, 24),
+                                end_date=rs02["date"].max(),
                             ),
                             html.Div(
                                 children = dcc.Graph(
