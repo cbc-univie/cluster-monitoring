@@ -12,8 +12,6 @@ tempmon can be easily installed:
 git clone https://github.com/cbc-univie/cluster-monitoring.git
 cd cluster-monitoring
 conda env create -f devtools/conda_envs/dash.yml
-cd tempmon
-python app.py
 ```
 Then follow the link provided in the terminal.
 
@@ -21,16 +19,22 @@ If you need some parts in your own scripts, e.g. to get the datafiles in a panda
 ```bash
 pip install .
 ```
-Then you can import in your python scirpt i.e.:
+
+
+## Usage
+To view the Dashboard:
+```
+cd tempmon
+python app.py
+```
+
+To use parts in a script (after `pip install .`):
 ```python
 from tempmon.utils import generate_dfs
 
 # generate dataframes for rs02 and rs10
 df_rs02, df_rs10 = generate_dfs()
 ```
-
-## Usage
-TODO
 
 [//]: <Please see the [documentation](https://cbc.github.io/cluster-monitoring) for usage examples.>
 
