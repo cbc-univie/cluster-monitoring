@@ -14,6 +14,7 @@ from utils.images import logo_encoded
 
 #from components.login import login_info
 
+
 # component
 navbar = dbc.Navbar(
     dbc.Container(

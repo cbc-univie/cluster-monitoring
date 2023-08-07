@@ -110,7 +110,6 @@ def update_rs10(start_date, end_date):
    
     return simple_figure
 
-
 def serve_layout():
     '''Define the layout of the application'''
     return html.Div(
