@@ -4,4 +4,4 @@
 #from .navbar import navbar
 
 #from .number_fact_aio import NumberFactAIO
-from .plots import simple_plot
+from .plots import first_plots
