@@ -1,4 +1,4 @@
-protex
+Temperature Monitoring
 ==============================
 [//]: # (Badges)
 [//]: <[![GitHub Actions Build Status](https://github.com/florianjoerg/protex/workflows/CI/badge.svg)](https://github.com/florianjoerg/protex/actions?query=workflow%3ACI)>
