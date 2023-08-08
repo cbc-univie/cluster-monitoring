@@ -10,7 +10,7 @@ dependencies:
   - pip
   - dash
   - pandas
-  #- dash_bootstrap_components
+  - dash-bootstrap-components
 
     # Pip-only installs
   # - pip:
