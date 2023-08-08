@@ -12,9 +12,6 @@ from dash import Input, Output, State, callback, html
 # local imports
 from utils.images import logo_encoded
 
-#from components.login import login_info
-
-
 # component
 navbar = dbc.Navbar(
     dbc.Container(
@@ -42,13 +39,10 @@ navbar = dbc.Navbar(
                         ),
                         dbc.NavItem(
                             dbc.NavLink(
-                                'Complex Page',
-                                href='/complex'
+                                'Correlations',
+                                href='/correlations'
                             )
-                        ),
-                        #html.Div(
-                        #    login_info
-                        #)
+                        )
                     ]
                 ),
                 id='navbar-collapse',
