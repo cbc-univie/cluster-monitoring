@@ -5,18 +5,30 @@ This component will sit at the bottom of each page of the application.
 '''
 
 # package imports
-from dash import html
+from datetime import datetime
+
 import dash_bootstrap_components as dbc
+from dash import html
 
 footer = html.Footer(
     dbc.Container(
         [
-            html.Hr(),
-            'Footer item 1',
-            html.Br(),
-            'Footer item 2',
-            html.Br(),
+            dbc.Row([
+                dbc.Col(
+            #html.Hr(),
+            '(c) cbc-univie',
+                ),
+                dbc.Col(
+            #html.Br(),
+            datetime.today().date(),
+                ),
+                dbc.Col(
+            
+            #html.Br(),
             'Footer item 3'
+            )
+            ]
+            )
         ]
     )
 )

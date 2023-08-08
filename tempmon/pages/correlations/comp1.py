@@ -6,4 +6,4 @@ If a page has a lot of components, I suggest splitting them up into their own fi
 # package imports
 from dash import html
 
-random_component = html.Div('This is a random component specific to the current page.')
+random_component = html.Div('We are waiting for JK to give us some plots...')

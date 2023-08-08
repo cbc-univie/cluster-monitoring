@@ -8,22 +8,22 @@ The callbacks could be in their own file, but you'll need to make sure to import
 
 # package imports
 import dash
-from dash import html
 import dash_bootstrap_components as dbc
+from components import create_dog_image_card  #, NumberFactAIO
+from dash import html
 
 # local imports
 from .comp1 import random_component
-from components import create_dog_image_card, NumberFactAIO
 
 dash.register_page(
     __name__,
-    path='/complex',
-    title='Complex page'
+    path='/correlations',
+    title='Correlations'
 )
 
 layout = html.Div(
     [
-        html.H3('Random component'),
+        html.H3('Awesome Correlations'),
         random_component,
         html.H3('Dog pics'),
         dbc.Row(
@@ -32,7 +32,7 @@ layout = html.Div(
                 create_dog_image_card('labrador', 'n02099712_607')
             ]
         ),
-        html.H3('Number Fact'),
-        NumberFactAIO(number=1)
+        #html.H3('Number Fact'),
+        #NumberFactAIO(number=1)
     ]
 )

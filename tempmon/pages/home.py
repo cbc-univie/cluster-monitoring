@@ -1,6 +1,7 @@
 # package imports
 import dash
 from dash import html, dcc, callback, Input, Output
+from components import first_plots
 
 dash.register_page(
     __name__,
@@ -13,15 +14,16 @@ layout = html.Div(
     [
         html.H1('Home page!'),
         html.Div(
-            html.A('Checkout the complex page here.', href='/complex')
+            html.A('Checkout awesome correlations here.', href='/correlations')
         ),
-        html.A('/page2', href='/page2'),
-        dcc.RadioItems(
-            id='radios',
-            options=[{'label': i, 'value': i} for i in ['Orange', 'Blue', 'Red']],
-            value='Orange',
-        ),
-        html.Div(id='content')
+        #html.A('/page2', href='/page2'),
+        # dcc.RadioItems(
+        #     id='radios',
+        #     options=[{'label': i, 'value': i} for i in ['Orange', 'Blue', 'Red']],
+        #     value='Orange',
+        # ),
+        html.Div(id='content'),
+        first_plots
     ]
 )
 
