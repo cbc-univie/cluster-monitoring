@@ -17,7 +17,7 @@ footer = html.Footer(
             dbc.Row([
                 dbc.Col(
             #html.Hr(),
-            '(c) cbc-univie',
+            f'© {datetime.today().year} cbc-univie',
                 ),
                 dbc.Col(
             #html.Br(),
