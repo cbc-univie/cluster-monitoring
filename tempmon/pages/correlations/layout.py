@@ -13,7 +13,7 @@ from components import create_dog_image_card  #, NumberFactAIO
 from dash import html
 
 # local imports
-from .comp1 import random_component
+from .plots import correlation_plot, random_component
 
 dash.register_page(
     __name__,
@@ -25,6 +25,7 @@ layout = html.Div(
     [
         html.H3('Awesome Correlations'),
         random_component,
+        correlation_plot,
         html.H3('Dog pics'),
         dbc.Row(
             [
