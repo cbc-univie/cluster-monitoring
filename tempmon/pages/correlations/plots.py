@@ -33,11 +33,11 @@ def update_charts(start_date, end_date):
     filtered_rs02 = rs02.query(
         "date >= @start_date and date <= @end_date"
     )
-    simple_figure = px.line(x=filtered_data["date"], y=filtered_data["VKM"], labels={"VKM": "windgeschwindigkeit"}, title="windgeschwindigkeit with rs02")
-    simple_figure.update_traces(name="windgeschwindigkeit", showlegend=True) # needs to come directly after!
+    simple_figure = px.line(x=filtered_data["date"], y=filtered_data["VKM"], labels={"VKM": "wind speed"}, title="windgeschwindigkeit with rs02")
+    simple_figure.update_traces(name="wind speed", showlegend=True) # needs to come directly after!
 
     simple_figure.add_scatter(x=filtered_rs02["date"], y=filtered_rs02["outdoor temp"], mode='lines', name='outdoor temp', yaxis="y2")
-    simple_figure.update_layout(xaxis_title="Date", yaxis=dict(title='Temperature °C'), yaxis2=dict(title="Jobs", overlaying="y", side="right")),
+    simple_figure.update_layout(xaxis_title="Date", yaxis=dict(title='wind speed km/h'), yaxis2=dict(title="temperature °C", overlaying="y", side="right")),
                                 #yaxis_title="Temperature (°C)", yaxis2_title="Jobs", showlegend=True)
    
     return simple_figure
