@@ -1,7 +1,7 @@
 # package imports
 import dash
-from dash import html, dcc, callback, Input, Output
 from components import first_plots
+from dash import Input, Output, callback, dcc, html
 
 dash.register_page(
     __name__,
@@ -12,7 +12,7 @@ dash.register_page(
 
 layout = html.Div(
     [
-        html.H1('Home page!'),
+        #html.H1('Home page!'),
         html.Div(
             html.A('Checkout awesome correlations here.', href='/correlations')
         ),

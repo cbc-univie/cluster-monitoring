@@ -70,7 +70,7 @@ first_plots = (html.Div(
                     html.Div(
                         children=[
                             html.Div(
-                                children="Date Range", className="menu-title"
+                                children="Pick your start and end day for the plots!", className="menu-title"
                             ),
                             dcc.DatePickerRange(
                                 id="date-range",
@@ -83,7 +83,7 @@ first_plots = (html.Div(
                                 children = dcc.Graph(
                                     id="simple_plot",
                                     config={"displayModeBar": False},
-                                    #figure={"data": [trace1, trace2]}
+                                    figure={}
                                 ),
                                 className="card",
                             ),
@@ -91,7 +91,6 @@ first_plots = (html.Div(
                                 children = dcc.Graph(
                                     id="rs10",
                                     config={"displayModeBar": False},
-                                    #figure={"data": [trace1, trace2]}
                                 ),
                                 className="card",
                             ),
