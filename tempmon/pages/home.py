@@ -13,9 +13,9 @@ dash.register_page(
 layout = html.Div(
     [
         #html.H1('Home page!'),
-        html.Div(
-            html.A('Checkout awesome correlations here.', href='/correlations')
-        ),
+        # html.Div(
+        #     html.A('Checkout awesome correlations here.', href='/correlations')
+        # ),
         #html.A('/page2', href='/page2'),
         # dcc.RadioItems(
         #     id='radios',
@@ -27,6 +27,6 @@ layout = html.Div(
     ]
 )
 
-@callback(Output('content', 'children'), Input('radios', 'value'))
-def home_radios(value):
-    return f'You have selected {value}'
+# @callback(Output('content', 'children'), Input('radios', 'value'))
+# def home_radios(value):
+#     return f'You have selected {value}'

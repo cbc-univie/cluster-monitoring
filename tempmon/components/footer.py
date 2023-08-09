@@ -9,6 +9,7 @@ from datetime import datetime
 
 import dash_bootstrap_components as dbc
 from dash import html
+from utils.images import logo_encoded
 
 footer = html.Footer(
     dbc.Container(
@@ -22,11 +23,13 @@ footer = html.Footer(
             #html.Br(),
             datetime.today().date(),
                 ),
-                dbc.Col(
-            
-            #html.Br(),
-            'Footer item 3'
+
+            dbc.Col(html.A(
+                html.Img(src=logo_encoded, height='30px'),
+                href='https://www.mdy.univie.ac.at',
+                style={'textDecoration': 'none'},
             )
+            ),
             ]
             )
         ]

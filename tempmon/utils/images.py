@@ -13,9 +13,9 @@ image_cdn = 'https://images.dog.ceo/breeds'
 
 # logo information
 cwd = os.getcwd()
-logo_path = os.path.join(cwd, 'assets', 'logos', 'logo_main.png')
+logo_path = os.path.join(cwd, 'assets', 'logos', 'Logo_CBC_neu.png')#'logo_main.png')
 logo_tunel = base64.b64encode(open(logo_path, 'rb').read())
-logo_encoded = 'data:image/png;base64,{}'.format(logo_tunel.decode())
+logo_encoded = f'data:image/png;base64,{logo_tunel.decode()}' #.format(logo_tunel.decode())
 
 
 def get_dog_image(breed, name):
