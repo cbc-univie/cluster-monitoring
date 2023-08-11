@@ -13,6 +13,8 @@ version = "v1"
 
 resource_id = "klima-v1-1h" #one of: https://dataset.api.hub.geosphere.at/v1/docs/user-guide/resource.html#resources
 
+time_format = "%b %d %H:%M:%S %Y"
+
 def data_from_hourly(param_name: str, metadata: bool=False) -> pd.DataFrame:
     """This uses data from the folling dataset:
     https://data.hub.geosphere.at/dataset/klima-v1-1h
@@ -43,6 +45,8 @@ def data_from_hourly(param_name: str, metadata: bool=False) -> pd.DataFrame:
         [data["timestamps"],data["features"][0]["properties"]["parameters"][param_name]["data"]]
         ).T
     df.columns=["date", param_name]
+    #df["date"] = df["date"].dt.strftime(time_format)
+    df["date"] = pd.to_datetime(df["date"], format="%Y-%m-%dT%H:%M+%S:00")
     if metadata:
         r2 = requests.get(url + "/metadata")
         metadata = r2.json()
