@@ -41,6 +41,7 @@ df_rs02, df_rs10 = generate_dfs()
 ## Maintainers
 
 - cbc
+- test
   
 ### Copyright
 
