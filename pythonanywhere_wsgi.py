@@ -21,6 +21,7 @@ import git
 from flask import request, abort
 import hmac
 import hashlib
+import json
 
 def is_valid_signature(x_hub_signature, data, private_key):
     hash_algorithm, github_signature = x_hub_signature.split('=', 1)
