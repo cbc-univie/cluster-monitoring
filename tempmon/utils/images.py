@@ -8,12 +8,14 @@ I suggest handling the local file encoding/decoding here as well as fetching any
 import base64
 import os
 
+from definitions import PROJECT_ROOT
+
 # image CDNs
 image_cdn = 'https://images.dog.ceo/breeds'
 
 # logo information
-cwd = os.getcwd()
-logo_path = os.path.join(cwd, 'assets', 'logos', 'Logo_CBC_neu.png')#'logo_main.png')
+#cwd = os.getcwd()
+logo_path = os.path.join(PROJECT_ROOT, 'assets', 'logos', 'Logo_CBC_neu.png')#'logo_main.png')
 logo_tunel = base64.b64encode(open(logo_path, 'rb').read())
 logo_encoded = f'data:image/png;base64,{logo_tunel.decode()}' #.format(logo_tunel.decode())
 

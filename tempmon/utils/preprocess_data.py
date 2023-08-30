@@ -2,10 +2,12 @@
 import copy
 import re
 from datetime import datetime
+import os
 
 import numpy as np
 import pandas as pd
 
+from definitions import PROJECT_ROOT
 
 class BaseLineReader:
     def __init__(self):
@@ -101,14 +103,14 @@ class BufferReader:
 
 
 def generate_rs02_df():
-    file = "data/temp_rs02.log"
+    file = os.path.join(PROJECT_ROOT, "data", "temp_rs02.log")
     with open(file, "r") as f:
         buffer = f.readlines()
     reader = BufferReader(buffer)
     return reader.df
 
 def generate_rs10_df():
-    file = "data/temp_rs10.log"
+    file = os.path.join(PROJECT_ROOT, "data", "temp_rs10.log")
     with open(file, "r") as f:
         buffer = f.readlines()
     reader = BufferReader(buffer)
