@@ -1,13 +1,14 @@
 # This file preporcess the data
 import copy
+import os
 import re
 from datetime import datetime
-import os
 
 import numpy as np
 import pandas as pd
 
 from definitions import PROJECT_ROOT
+
 
 class BaseLineReader:
     def __init__(self):
@@ -118,3 +119,10 @@ def generate_rs10_df():
 
 def generate_dfs():
     return generate_rs02_df(), generate_rs10_df()
+
+def filter(*args: pd.DataFrame, **kwargs):
+    col_name = kwargs["col_name"]
+    for df in args:
+        filtered_data = df[col_name].rolling(15).mean()
+        df[f"filtered {col_name}"] = filtered_data
+    return args
