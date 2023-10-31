@@ -6,7 +6,6 @@ from datetime import datetime
 
 import numpy as np
 import pandas as pd
-
 from definitions import PROJECT_ROOT
 
 
@@ -67,7 +66,7 @@ class LineReader2(BaseLineReader):
 
 class LineReader3(BaseLineReader):
     def detect_format(self, line):
-        return re.match(r"outdoor temp: \d+(\.\d+)?, GPU jobs: \d+, CPU jobs: \d+, CPU on GPU jobs: \d+, total jobs: \d+, server room temp: \d+\.\d+, date: [A-Za-z]{3} [A-Za-z]{3} *\d{1,2} \d{2}:\d{2}:\d{2} [A-Za-z]{4} \d{4}", line)
+        return re.match(r"outdoor temp: \d+(\.\d+)?, GPU jobs: \d+, CPU jobs: \d+, CPU on GPU jobs: \d+, total jobs: \d+, server room temp: \d+\.\d+, date: [A-Za-z]{3} [A-Za-z]{3} *\d{1,2} \d{2}:\d{2}:\d{2} CES?T \d{4}", line) # becuase CEST and CET
     
     def read_line(self, line):
         # Format 3: outdoor temp: 27, GPU jobs: 16, CPU jobs: 0, CPU on GPU jobs: 0, total jobs: 16, server room temp: 22.81, date: Fri Jul 28 17:00:02 CEST 2023
