@@ -1,6 +1,10 @@
-import sys
+import datetime
 import os
+import sys
+
+import pytz
 from dotenv import load_dotenv
+
 project_folder = os.path.expanduser('~/cluster-monitoring')  # adjust as appropriate
 load_dotenv(os.path.join(project_folder, '.env'))
 
@@ -11,17 +15,28 @@ path = '/home/clustermonitoring/cluster-monitoring/tempmon'
 if path not in sys.path:
     sys.path.append(path)
 
-os.environ["TZ"] = "CEST" #to make datetime.strptime work...
+
+#get computer timezone
+#current_time = datetime.datetime.now(pytz.utc)
+#cet_tz = pytz.timezone('Europe/Vienna')
+#is_cest = current_time.astimezone(cet_tz).tzname() == "CEST"
+#if is_cest:
+#    os.environ["TZ"] = "CEST" #to make datetime.strptime work...
+#else:
+#    os.environ["TZ"] = "CET"
+os.environ["TZ"] = "UTC" #for datetime.strptime, was a problem if CET and CEST in the same file...
 
 # need to pass the flask app as "application" for WSGI to work
 # for a dash app, that is at app.server
 # see https://plot.ly/dash/deployme
-from app import app
-import git
-from flask import request, abort
-import hmac
 import hashlib
+import hmac
 import json
+
+import git
+from app import app
+from flask import abort, request
+
 
 def is_valid_signature(x_hub_signature, data, private_key):
     hash_algorithm, github_signature = x_hub_signature.split('=', 1)
