@@ -40,12 +40,11 @@ df_rs02, df_rs10 = generate_dfs()
 
 ## Maintainers
 
-- cbc
-- test
+- cbc-univie
   
 ### Copyright
 
-:copyright: 2023, cbc
+:copyright: 2024, cbc-univie
 
 
 #### Acknowledgements
