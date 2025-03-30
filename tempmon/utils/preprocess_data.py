@@ -6,7 +6,19 @@ from datetime import datetime
 
 import numpy as np
 import pandas as pd
+import pendulum
+import pytz
 from definitions import PROJECT_ROOT
+
+
+def convert_utc_to_local_time(utc_time):
+    cet = pytz.timezone('CET')
+    tz_abbreviation = utc_time.astimezone(cet).tzname()
+
+    if tz_abbreviation == 'CET':
+        print("The time is in Central European Time (CET).")
+    elif tz_abbreviation == 'CEST':
+        print("The time is in Central European Summer Time (CEST).")
 
 
 class BaseLineReader:
@@ -72,10 +84,15 @@ class LineReader3(BaseLineReader):
         # Format 3: outdoor temp: 27, GPU jobs: 16, CPU jobs: 0, CPU on GPU jobs: 0, total jobs: 16, server room temp: 22.81, date: Fri Jul 28 17:00:02 CEST 2023
         time_format = "%a %b %d %H:%M:%S %Z %Y"
         record = line.strip().split(", ")
+
+        utc_time = datetime.strptime(record[6].split(": ")[1], time_format)
+        pendulum_time = pendulum.instance(utc_time)
+        local_time = pendulum_time.in_tz("Europe/Vienna")
+
         my_line = copy.deepcopy(self.per_line_dict)
         my_line.update({"outdoor temp": float(record[0].split(": ")[1]), "GPU jobs": int(record[1].split(": ")[1]), "CPU jobs": int(record[2].split(": ")[1]), 
                         "CPU on GPU jobs": int(record[3].split(": ")[1]), "total jobs": int(record[4].split(": ")[1]), "server room temp": float(record[5].split(": ")[1]), 
-                        "date": datetime.strptime(record[6].split(": ")[1], time_format)})
+                        "date": local_time})
         return my_line
 
 class BufferReader:
