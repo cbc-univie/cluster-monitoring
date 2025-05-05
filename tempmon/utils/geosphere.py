@@ -8,6 +8,10 @@ from datetime import datetime
 import pandas as pd
 import requests
 
+#ToDo: make it a class and retrieve certain info as dfs(?)
+# add all the data variable to the init to je able to inport rhem snd do mor call the functions twice
+
+
 host = "https://dataset.api.hub.geosphere.at"
 version = "v1"
 
